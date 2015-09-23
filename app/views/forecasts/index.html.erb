@@ -1,16 +1,16 @@
+
+
 <script>
 $(function(){
 	var longitude, latitude;
   navigator.geolocation.getCurrentPosition(function(position){
     var longitude = position.coords.longitude
     var latitude = position.coords.latitude
-    $.get('/get_weather', {longitude: longitude, latitude: latitude}, function (response) {
+    $.post('/get_weather', {longitude: longitude, latitude: latitude}, function (response) {
     	$('body').html(response);
-    	var element = document.querySelector( 'a' );
-	    GifLinks( element );
     })
   }, function(){
-    $.get('/get_weather', null, function (response) {
+    $.post('/get_weather', null, function (response) {
     	$('body').html(response);
     	var element = document.querySelector( 'a' );
 	    GifLinks( element );
