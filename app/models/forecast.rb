@@ -1,3 +1,4 @@
+require 'open-uri'
 class Forecast
 
 	attr_reader :ip, :location, :hash_weather
@@ -9,7 +10,7 @@ class Forecast
 	end
 
 	def api_call
-		binding.pry
+		# binding.pry
 		@the_call = "https://api.forecast.io/forecast/#{ENV["APIKEY"]}/#{location[:latitude]},#{location[:longitude]}"
 	end
 

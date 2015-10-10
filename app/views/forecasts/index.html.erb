@@ -6,14 +6,14 @@ $(function(){
   navigator.geolocation.getCurrentPosition(function(position){
     var longitude = position.coords.longitude
     var latitude = position.coords.latitude
-    $.post('/get_weather', {longitude: longitude, latitude: latitude}, function (response) {
+    $.get('/get_weather', {longitude: longitude, latitude: latitude}, function (response) {
     	$('body').html(response);
     })
   }, function(){
-    $.post('/get_weather', null, function (response) {
+    $.get('/get_weather', null, function (response) {
     	$('body').html(response);
     	var element = document.querySelector( 'a' );
-	    GifLinks( element );
+	    
     })
   })
 });
