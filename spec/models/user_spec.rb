@@ -17,18 +17,15 @@ RSpec.describe User, type: :model do
 
   it "must have a 10-digit phone number" do 
     user.phone_number = "1234567"
-    user.save
     expect(user).to_not be_valid
 
     user.phone_number = "1234567890"
-    user.save
     expect(user).to be_valid
   end
 
   it "must have a unique phone number" do
     first_user = user.save
     second_user = User.new(phone_number: ph_num)
-    second_user.save
     expect(second_user).to_not be_valid
   end
 
@@ -41,7 +38,16 @@ RSpec.describe User, type: :model do
   it "can have a location in latitude and longitude" do
     user.latitude = 73.555
     user.longitude = 125.001
-    user.save
+    expect(user).to be_valid
+  end
+
+  it "can only have valid latitude and longitude" do
+    user.latitude = 200
+    user.longitude = -200
+    expect(user).to_not be_valid
+
+    user.latitude = 90
+    user.longitude = -180
     expect(user).to be_valid
   end
 
