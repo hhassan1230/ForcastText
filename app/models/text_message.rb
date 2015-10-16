@@ -1,16 +1,24 @@
 class TextMessage
   # put your own credentials here 
-  account_sid = ENV['account_sid'] 
-  auth_token = ENV['auth_token'] 
-   
+  SID = ENV['account_sid'] 
+  TOKEN = ENV['auth_token'] 
+  SOURCE_NUMBER = ENV['twilio_source_number']# +19292519335'
   # set up a client to talk to the Twilio REST API 
-  @client = Twilio::REST::Client.new account_sid, auth_token 
-   
-  @client.account.messages.create({
-  	:from => '+19292519335', 
-  	:to => '3475817676', 
-  	:body => 'Hi',  
-  })
-
+  CLIENT = Twilio::REST::Client.new(SID, TOKEN)   
   
+  attr_accessor :recipient, :body
+
+  def initialize(recipient, body="Empty message")
+    @recipient = recipient
+    @body = body
+  end
+
+  def send_message
+    CLIENT.account.messages.create({ # the #create method sends the text
+    	:from => SOURCE_NUMBER, 
+    	:to => recipient, 
+    	:body => body
+    })  
+  end
+
 end
