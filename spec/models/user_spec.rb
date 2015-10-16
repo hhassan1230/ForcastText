@@ -25,10 +25,24 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
   end
 
+  it "must have a unique phone number" do
+    first_user = user.save
+    second_user = User.new(phone_number: ph_num)
+    second_user.save
+    expect(second_user).to_not be_valid
+  end
+
   it "can set a user's name" do 
     user.name = "Solid Snake"
     user.save
     expect(User.find_by(name: "Solid Snake")).to eq(user)
+  end
+
+  it "can have a location in latitude and longitude" do
+    user.latitude = 73.555
+    user.longitude = 125.001
+    user.save
+    expect(user).to be_valid
   end
 
 end

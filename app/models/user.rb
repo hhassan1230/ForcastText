@@ -1,3 +1,3 @@
 class User < ActiveRecord::Base
-  validates :phone_number, presence: true, length: { is: 10 }
+  validates :phone_number, presence: true, length: { is: 10 }, uniqueness: true
 end
