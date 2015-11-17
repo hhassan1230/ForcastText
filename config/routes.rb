@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root 'forecasts#index'
   get '/get_weather' => 'forecasts#get_weather'
   resources :forecasts
+  resources :users
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
