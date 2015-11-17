@@ -18,9 +18,16 @@ class Forecast
 		file = open(api_call)
 		read = File.read(file)
 		@hash_weather = JSON.parse(read)
-		binding.pry
 		@hash_weather 
-		
+		time = Time.at(@hash_weather["currently"]["time"])
+		clock_time = time.strftime("%I:%M%P") 
+		current_temp = (@hash_weather["currently"]["temperature"]).round
+		now_weather = {"time": clock_time, "temperature": current_temp}
+		summary_text_string = "It's #{now_weather[:time]} and it is #{now_weather[:temperature]}"
+		# text = TextMessage.new('3475817676', summary_text_string)
+		# text.send_sms
+		binding.pry
+
 	end
 
 
