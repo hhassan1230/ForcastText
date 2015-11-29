@@ -5,8 +5,11 @@ class ForecastsController < ApplicationController
   
 	def get_weather
 		lat_long = {longitude: params["longitude"], latitude: params["latitude"]}
-		# binding.pry
 		forcast = Forecast.new(ip=nil, lat_long)
+		@hash_weather = forcast
+		# binding.pry
+
+		render 'login'
 		# text = TextMessage.new([params])
 
 		# text.send_sms
