@@ -10,7 +10,12 @@ class Forecast
 	end
 
 	def api_call
-		@the_call = "https://api.forecast.io/forecast/#{ENV["APIKEY"]}/#{location[:latitude]},#{location[:longitude]}"
+		unless @location.empty?
+			@the_call = "https://api.forecast.io/forecast/#{ENV["APIKEY"]}/#{location[:latitude]},#{location[:longitude]}"		
+		else
+			# need to hand this us ip call!
+			@the_call = "https://api.forecast.io/forecast/#{ENV["APIKEY"]}/#{location[:latitude]},#{location[:longitude]}"
+		end
 	end
 
 	def hash_weather

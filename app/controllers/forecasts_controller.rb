@@ -7,7 +7,8 @@ class ForecastsController < ApplicationController
 		lat_long = {longitude: params["longitude"], latitude: params["latitude"]}
 		forcast = Forecast.new(ip=nil, lat_long)
 		@hash_weather = forcast
-		# binding.pry
+		icon_img_description = @hash_weather.hash_weather["currently"]["icon"]
+		@gif_url = Giphy.new(icon_img_description).getting_url
 
 		render 'login'
 		# text = TextMessage.new([params])
