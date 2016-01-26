@@ -1,2 +1,37 @@
-<%= "It is #{@hash_weather.hash_weather["currently"]["icon"]}" %>
+
 <img src=<%= @gif_url %> id='selector'/>
+
+<div class="center_div">
+	<div class="container">
+
+	  <div id="login-form">
+
+	    <h3><%= "#{Time.at(@hash_weather.hash_weather["currently"]["time"]).to_time.strftime "%l:%M %P"}" %>
+	    <br> 
+	    Weather: <%= "#{@hash_weather.hash_weather["currently"]["temperature"].round}° and #{@hash_weather.hash_weather["currently"]["summary"].downcase} in #{@hash_weather.hash_weather["timezone"].match(/\/(.+)$/)[1].gsub("_", " ").titleize}" %></h3>
+	    <h3>Login</h3>
+
+	    <fieldset>
+
+	      <form action="javascript:void(0);" method="get">
+
+	        <input type="email" required value="Email" onBlur="if(this.value=='')this.value='Email'" onFocus="if(this.value=='Email')this.value='' "> <!-- JS because of IE support; better: placeholder="Email" -->
+
+	        <input type="password" required value="Password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' "> <!-- JS because of IE support; better: placeholder="Password" -->
+
+	        <input type="submit" value="Login">
+
+	        <footer class="clearfix">
+
+	          <p><span class="info">?</span><a href="#">Forgot Password</a></p>
+
+	        </footer>
+
+	      </form>
+
+	    </fieldset>
+
+	  </div> <!-- end login-form -->
+
+	</div>
+</div>

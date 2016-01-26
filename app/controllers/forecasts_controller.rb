@@ -9,7 +9,7 @@ class ForecastsController < ApplicationController
 		@hash_weather = forcast
 		icon_img_description = @hash_weather.hash_weather["currently"]["icon"]
 		@gif_url = Giphy.new(icon_img_description).getting_url
-
+		# binding.pry
 		render 'login'
 		# text = TextMessage.new([params])
 
